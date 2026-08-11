@@ -17,6 +17,14 @@
   <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f4ec">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="/assets/style.css">
+  <script>
+    (function () {
+      try {
+        var v = localStorage.getItem("theme");
+        if (v === "dark" || v === "light") document.documentElement.dataset.theme = v;
+      } catch (e) {}
+    })();
+  </script>
 </head>
 <body>
   <a class="skip" href="#main">Skip to content</a>
@@ -25,6 +33,7 @@
       <a class="site-name" href="/">Jay Clark</a>
       <nav aria-label="Site">
         <a href="/">Index</a>
+        <button class="mode" id="mode" aria-label="Color scheme">Auto</button>
       </nav>
     </header>
     <main id="main">
@@ -39,5 +48,27 @@
       </div>
     </footer>
   </div>
+  <script>
+    (function () {
+      var btn = document.getElementById("mode");
+      var root = document.documentElement;
+      var v;
+      try { v = localStorage.getItem("theme"); } catch (e) {}
+      if (v !== "dark" && v !== "light") v = "auto";
+      var show = function () { btn.textContent = v.charAt(0).toUpperCase() + v.slice(1); };
+      show();
+      btn.addEventListener("click", function () {
+        v = v === "auto" ? "dark" : v === "dark" ? "light" : "auto";
+        if (v === "auto") {
+          delete root.dataset.theme;
+          try { localStorage.removeItem("theme"); } catch (e) {}
+        } else {
+          root.dataset.theme = v;
+          try { localStorage.setItem("theme", v); } catch (e) {}
+        }
+        show();
+      });
+    })();
+  </script>
 </body>
 </html>

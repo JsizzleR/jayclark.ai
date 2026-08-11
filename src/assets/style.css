@@ -18,8 +18,10 @@
   --fs-metric:.9rem; --fs-title:.8rem; --fs-label:.72rem; --fs-caption:.65rem;
   --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
 }
+/* Ink on vellum. Applied by OS preference unless the toggle forces dark,
+   and by the toggle's explicit light choice. Keep both blocks identical. */
 @media (prefers-color-scheme: light) {
-  :root {
+  :root:not([data-theme="dark"]) {
     color-scheme: light;
     --bg:#f7f4ec; --panel:#fbf9f2; --raised:#efeadd; --soft:#e7e0cf;
     --border:rgba(42,48,60,.35);
@@ -28,6 +30,15 @@
     --grid:rgba(42,48,60,.05); --grid-major:rgba(42,48,60,.09);
     --shadow:none;
   }
+}
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg:#f7f4ec; --panel:#fbf9f2; --raised:#efeadd; --soft:#e7e0cf;
+  --border:rgba(42,48,60,.35);
+  --fg:#26303c; --muted:#5f6b7b; --accent:#26303c; --link:#1c2733;
+  --ok:#1f7a43; --warn:#8a5e10; --bad:#c03428; --idle:#667180;
+  --grid:rgba(42,48,60,.05); --grid-major:rgba(42,48,60,.09);
+  --shadow:none;
 }
 
 /* ---- base ---- */
@@ -96,7 +107,7 @@ a:hover { text-decoration-style: solid; }
   text-decoration: none;
 }
 .site-name:hover { text-decoration: underline dotted; }
-.masthead nav { display: flex; gap: 1.4rem; }
+.masthead nav { display: flex; gap: 1.4rem; align-items: baseline; }
 .masthead nav a {
   color: var(--muted);
   font-size: var(--fs-label);
@@ -104,6 +115,19 @@ a:hover { text-decoration-style: solid; }
   letter-spacing: .14em;
 }
 .masthead nav a:hover { color: var(--fg); }
+.mode {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 0;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: var(--fs-caption);
+  text-transform: uppercase;
+  letter-spacing: .14em;
+  padding: .18rem .55rem;
+  cursor: pointer;
+}
+.mode:hover { color: var(--fg); border-color: var(--fg); }
 
 /* ---- headings flanked by drafting rules ---- */
 
