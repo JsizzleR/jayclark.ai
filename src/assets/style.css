@@ -1,0 +1,35 @@
+/* Placeholder stylesheet. The engineering drawing design lands next. */
+:root {
+  color-scheme: dark;
+  --bg: #0f2743;
+  --fg: #d9e8f8;
+  --muted: #8fb0cf;
+  --link: #eaf3fd;
+  --border: rgba(217, 232, 248, .32);
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: light;
+    --bg: #f7f4ec;
+    --fg: #26303c;
+    --muted: #5f6b7b;
+    --link: #1c2733;
+    --border: rgba(42, 48, 60, .35);
+  }
+}
+body {
+  margin: 0 auto;
+  padding: 2rem 1rem 4rem;
+  max-width: 70ch;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  line-height: 1.7;
+}
+a { color: var(--link); }
+pre { overflow-x: auto; border: 1px solid var(--border); padding: 1rem; }
+.table-wrap { overflow-x: auto; }
+table { border-collapse: collapse; }
+th, td { border: 1px solid var(--border); padding: .5rem; text-align: left; vertical-align: top; }
+.skip { position: absolute; left: -999px; }
+.skip:focus { left: 1rem; }

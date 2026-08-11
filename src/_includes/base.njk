@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <title>{% if title %}{{ title }} · {{ site.name }}{% else %}{{ site.name }}{% endif %}</title>
+  <meta name="description" content="{{ description or site.description }}">
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+  <meta property="og:site_name" content="{{ site.name }}">
+  <meta property="og:type" content="{{ ogType or 'website' }}">
+  <meta property="og:title" content="{% if title %}{{ title }}{% else %}{{ site.name }}{% endif %}">
+  <meta property="og:description" content="{{ description or site.description }}">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <meta name="twitter:card" content="summary">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#0f2743">
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f4ec">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="sheet">
+    <header class="masthead">
+      <a class="site-name" href="/">Jay Clark</a>
+      <nav aria-label="Site">
+        <a href="/">Index</a>
+      </nav>
+    </header>
+    <main id="main">
+{{ content | safe }}
+    </main>
+    <footer class="drawing-footer">
+      <div class="titleblock">
+        <div class="tb-cell"><span class="tb-label">Name</span><b>Jay Clark</b></div>
+        <div class="tb-cell"><span class="tb-label">Sheet</span><b>{% if title %}{{ title }}{% else %}Index{% endif %}</b></div>
+        <div class="tb-cell"><span class="tb-label">Date</span><b>{% if page.date and tags %}{{ page.date | isoDate }}{% else %}{{ build.date }}{% endif %}</b></div>
+        <div class="tb-cell"><span class="tb-label">Rev</span><b>{{ rev or "A" }}</b></div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

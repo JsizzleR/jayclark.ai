@@ -1,0 +1,23 @@
+---
+eleventyExcludeFromCollections: true
+layout: base.njk
+---
+<section class="intro">
+  <p>I build software with AI coding agents and keep notes on what the work teaches me.
+  When a lesson holds up long enough to trust, it becomes an essay here. Each one is
+  written from logged decisions on real projects, so you can put it to use in an
+  afternoon.</p>
+</section>
+
+<h1 class="rule-head">Essays</h1>
+<ol class="sheet-index">
+  {% for e in collections.essay | reverse %}
+  <li>
+    <div class="index-line">
+      <a href="{{ e.url }}">{{ e.data.title }}</a>
+      <span class="index-date">{{ e.date | isoDate }}</span>
+    </div>
+    <p>{{ e.data.description }}</p>
+  </li>
+  {% endfor %}
+</ol>

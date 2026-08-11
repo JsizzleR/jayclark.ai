@@ -1,0 +1,27 @@
+---
+layout: base.njk
+---
+{% set headings = content | toc %}
+<article class="essay">
+  <header class="essay-head">
+    <span class="byline">Jay Clark</span>
+    <span class="stamp">Issued {{ page.date | isoDate }}</span>
+  </header>
+  <div class="essay-layout">
+    <div class="prose">
+{{ content | safe }}
+    </div>
+    {% if headings.length %}
+    <aside class="toc">
+      <nav aria-label="On this sheet">
+        <span class="toc-title">On this sheet</span>
+        <ol>
+          {% for h in headings %}
+          <li><a href="#{{ h.id }}">{{ h.text }}</a></li>
+          {% endfor %}
+        </ol>
+      </nav>
+    </aside>
+    {% endif %}
+  </div>
+</article>
