@@ -229,17 +229,9 @@ h1.rule-head, .prose h1 { font-size: 1.35rem; line-height: 1.2; letter-spacing: 
 /* ---- essay page ---- */
 
 .essay-head {
-  display: flex; justify-content: space-between; align-items: center;
-  gap: 1rem; flex-wrap: wrap;
+  display: flex; justify-content: flex-end; align-items: center;
   max-width: 55.5rem;
   margin: 0 auto 1.6rem;
-}
-.byline {
-  font-size: .68rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .06em;
-  color: var(--muted);
 }
 
 .essay-layout {
