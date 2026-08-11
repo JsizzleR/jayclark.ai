@@ -1,3 +1,9 @@
+---
+title: The Compounding Loop
+description: A field manual for running AI coding agent sessions that get better every week instead of starting from zero every morning.
+date: 2026-08-11
+---
+
 # The Compounding Loop
 
 *A field manual for agentic engineering: how to run Claude and Codex sessions that get better
