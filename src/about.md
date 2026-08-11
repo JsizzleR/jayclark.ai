@@ -17,6 +17,4 @@ I write here about agent reliability and about building software with coding age
 Nothing survives production on good intentions, and no rule survives on being remembered.
 The rules that matter get written into a file or enforced by a script.
 
-Most of what's here I learned by getting it wrong first.
-
 U.S. Air Force veteran. Python and Go. New York.

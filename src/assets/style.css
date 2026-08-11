@@ -302,28 +302,16 @@ h1.rule-head { max-width: 39rem; margin: 0 auto 1.1rem; }
 .notfound { max-width: 39rem; margin-inline: auto; }
 .notfound .stamp { margin-bottom: 1.2rem; }
 
-/* ---- footer: a console meta strip ---- */
+/* ---- footer ---- */
 
-.drawing-footer {
-  display: flex; justify-content: flex-start;
+.site-footer {
   border-top: 1px solid var(--border);
   margin-top: 3rem;
   padding-top: .9rem;
   color: var(--muted);
   font-size: .78rem;
 }
-.titleblock { display: flex; flex-wrap: wrap; gap: .35rem 1.6rem; border: 0; }
-.tb-cell { padding: 0; border: 0; }
-.tb-label {
-  display: inline;
-  font-size: var(--fs-caption);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: .06em;
-  color: var(--muted);
-  margin-right: .45rem;
-}
-.tb-cell b { display: inline; font-weight: 600; font-size: .75rem; color: var(--fg); }
+.site-footer p { margin: 0; }
 
 /* ---- responsive: every override tightens, never loosens ---- */
 
@@ -359,7 +347,7 @@ h1.rule-head { max-width: 39rem; margin: 0 auto 1.1rem; }
   h1.rule-head, .prose h1 { font-size: 1.22rem; }
   .prose h2 { margin: 2rem 0 .8rem; }
   .prose pre { padding: .7rem .8rem; }
-  .drawing-footer { margin-top: 2.4rem; }
+  .site-footer { margin-top: 2.4rem; }
 }
 
 @media (max-width: 520px) {
@@ -370,5 +358,5 @@ h1.rule-head { max-width: 39rem; margin: 0 auto 1.1rem; }
   .prose pre { font-size: .74rem; padding: .6rem .7rem; }
   .prose table { font-size: .78rem; }
   .sheet-index li { padding: .7rem .75rem; }
-  .drawing-footer { margin-top: 2rem; }
+  .site-footer { margin-top: 2rem; }
 }

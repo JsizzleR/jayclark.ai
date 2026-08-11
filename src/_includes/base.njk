@@ -40,13 +40,8 @@
     <main id="main">
 {{ content | safe }}
     </main>
-    <footer class="drawing-footer">
-      <div class="titleblock">
-        <div class="tb-cell"><span class="tb-label">Name</span><b>Jay Clark</b></div>
-        <div class="tb-cell"><span class="tb-label">Sheet</span><b>{% if title %}{{ title }}{% else %}Index{% endif %}</b></div>
-        <div class="tb-cell"><span class="tb-label">Date</span><b>{% if page.date and tags %}{{ page.date | isoDate }}{% else %}{{ build.date }}{% endif %}</b></div>
-        <div class="tb-cell"><span class="tb-label">Rev</span><b>{{ rev or "A" }}</b></div>
-      </div>
+    <footer class="site-footer">
+      <p>&copy; {{ build.year }} Jay Clark</p>
     </footer>
   </div>
   <script>
