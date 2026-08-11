@@ -19,6 +19,11 @@ Everything below the front matter is ordinary Markdown. Headings get GitHub-styl
 slugs, so in-document links written for GitHub keep working. A table of contents is built
 automatically from the h2 headings.
 
+Then run `npm run og` and commit the generated card alongside the essay. This renders a
+1200x630 link preview image to `src/og/<slug>.png` from the essay's front matter, using
+Google Chrome via playwright-core. The layout wires the matching `og:image` tag from the
+file slug automatically.
+
 ## Local preview
 
 ```sh
