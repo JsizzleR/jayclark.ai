@@ -142,8 +142,9 @@ h1.rule-head, .prose h1 { font-size: 1.35rem; line-height: 1.2; letter-spacing: 
 /* ---- prose ---- */
 
 .prose { max-width: 39rem; font-size: .95rem; line-height: 1.7; }
+.page-prose { margin-inline: auto; }
 .prose p { margin: 0 0 1.1rem; }
-.prose h1 + p { color: var(--muted); }
+.essay .prose h1 + p { color: var(--muted); }
 .prose ul, .prose ol { margin: 0 0 1.1rem; padding-left: 1.4rem; }
 .prose li { margin: .4rem 0; }
 .prose li::marker { color: var(--muted); }
