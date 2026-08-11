@@ -31,18 +31,21 @@ site to `_site/`.
 
 ## Design
 
-The visual language is an engineering drawing. Cyanotype ground with a drafting grid,
-chalk ink and hairline rules, one alarm red, a fixed sheet frame, and a titleblock in the
-footer. The light scheme is the same drawing rendered as ink on vellum, selected by
-`prefers-color-scheme`. All tokens live at the top of `src/assets/style.css`.
+The visual language is a terminal console. A near-black surface ramp (page, panel,
+raised, soft), hairline rules, zero border radius, zero shadows, and color reserved for
+status. The header stays dark in both schemes and carries the one ornament, a neon
+condensed wordmark. The light scheme swaps the ramp for off-whites, selected by
+`prefers-color-scheme` with a manual toggle override. All tokens live at the top of
+`src/assets/style.css`.
 
-Type runs in two registers. Chrome (masthead, nav, stamps, tables, titleblock) uses the
-drawing's small monospace scale. Body prose is a larger monospace on a 68ch measure with
-generous leading, so long essays read comfortably.
+Type runs in two registers. The field is monospace, with a sans display face as the
+accent for headings and nav. Body prose runs larger than console density, on a centered
+39rem measure with generous leading, so long essays read comfortably.
 
-Conventions worth keeping. Every border radius is 0 and every shadow is flat. Tables are
-fully ruled and scroll inside a wrapper div, never the page. Code blocks scroll inside
-their own container. Mobile overrides only tighten values, never loosen them.
+Conventions worth keeping. Tables are ruled bottom-only and scroll inside a wrapper div,
+never the page. Code blocks scroll inside their own container. The layout is a centered
+reading column with the header and footer rules spanning wider. Mobile overrides only
+tighten values, never loosen them.
 
 ## House style
 
