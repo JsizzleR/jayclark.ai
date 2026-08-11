@@ -7,6 +7,16 @@ layout: base.njk
     <span class="byline">Jay Clark</span>
     <span class="stamp">Issued {{ page.date | isoDate }}</span>
   </header>
+  {% if headings.length %}
+  <details class="toc-inline">
+    <summary>On this sheet</summary>
+    <ol>
+      {% for h in headings %}
+      <li><a href="#{{ h.id }}">{{ h.text }}</a></li>
+      {% endfor %}
+    </ol>
+  </details>
+  {% endif %}
   <div class="essay-layout">
     <div class="prose">
 {{ content | safe }}
