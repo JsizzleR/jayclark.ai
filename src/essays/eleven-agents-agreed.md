@@ -30,7 +30,7 @@ agents endorsed the migration.
 Every one of them was the same model.
 
 A single pass by a model from a different lab returned the finding none of the eleven had
-approached: *the migration was the defect wearing a hat*. Stamping ownership onto a tree
+reached: *the migration was the defect wearing a hat*. Stamping ownership onto a tree
 because its name matches a live application is the same name-as-identity mistake that caused
 the original bug. On any box where a name was ever reused, the fix converts a detectable leak
 into a signed, permanent claim. It writes the new tenant's identity onto the previous tenant's
@@ -39,14 +39,14 @@ data, with no operator in the loop.
 Do not conclude that the outside model is the hero of this story. Its verdict arrived with
 four high-severity supporting arguments. I checked them against the code, and two were wrong.
 One had a symmetry argument exactly backwards. The eleven-agent panel's *overall* ruling was
-wrong in the opposite direction: it recommended building nothing at all, for a live
+wrong in the opposite direction: it recommended building nothing at all, despite a live
 cross-tenant leak. No reviewer in this story was reliable enough to trust without checking.
 That is the subject of this essay.
 
 ## The thesis, narrowed
 
-The short version: fan-out is not diversity. The lesson is not that same-model review is
-worthless, and not that a different model is magic. It is narrower and more useful:
+The short version: fan-out is not diversity. The lesson isn't that same-model review is
+worthless, or that a different model is magic. It is narrower and more useful:
 **reviewer count exaggerates assurance when the reviewers' errors are correlated.** Eleven
 approvals from one model are worth more than one approval, but far less than eleven. The
 misses concentrate exactly where the model's blind spots are. A blind spot sampled eleven
@@ -55,9 +55,9 @@ times produces eleven agreeing reviews and no coverage.
 This matters now because fan-out is the easy axis. Every agentic tool makes it trivial to
 spawn five reviewers with five different lenses, and the checkmarks feel like independent
 opinions. The diversity they add is real but shallow. Different prompts vary what each
-reviewer *looks at*. They do not vary the frame all of the reviewers inherit.
+reviewer *looks at*. They do not vary the frame every reviewer inherits.
 
-Here are the denominators, because stories without them are survivorship. The project logs
+Here are the denominators, because stories without them are survivorship bias. The project logs
 every decision with grep-able review receipts. The log holds 400+ numbered decisions, and 106
 of them carry formal review receipts. The receipts record roughly 68 different-model passes,
 53 multi-agent panels, 55 re-verifies of fixes, 19 mutation batteries, and 10 second-opinion
@@ -79,7 +79,7 @@ Wrong twice, in opposite directions: too permissive about the design's worst ide
 conservative about fixing a live leak.
 
 **Round two, a different-family pass** at its standard high-effort tier. It overturned the
-build-nothing ruling and killed the migration as the defect wearing a hat. It kept the
+build-nothing ruling and killed the migration, calling it the defect wearing a hat. It kept the
 marker-file mechanism.
 
 **Round three, a same-family model in a fresh session**, briefed to argue the design was
@@ -107,8 +107,8 @@ I told a short version of this story in
 bypassed by a call site the diff never touched. The full version shows what a panel is
 actually for.
 
-The change added an ownership guard in front of a storage path, a descendant of the design
-above. The review was thorough by any normal standard: two separate different-model passes,
+The change, a descendant of the design above, added an ownership guard in front of a storage
+path. The review was thorough by any normal standard: two separate different-model passes,
 then a re-verify of the fixes. All green. The defect sat elsewhere. A second call site,
 serving the *default* configuration of a common deployment shape, built the same storage path
 inline and never called the guard. The guard was live, tested, and reviewed, and it was off
@@ -166,7 +166,7 @@ by first-match, so a wider wrong answer also passed. One test derived its expect
 calling the function under test*, so implementation and expectation drift together and the
 property vanishes without a failure. A test whose oracle is the code it tests has no oracle.
 A battery only proves the tests fail on the mutants you thought to write. You write mutants
-with the same blind spots you wrote the tests with.
+with the same blind spots that shaped the tests.
 
 **Reviewers are wrong specifically and confidently**, and so are you. The verdict that killed
 the migration came with four supporting arguments, and two were false. On the enforcement
@@ -195,8 +195,8 @@ record that softens the guard for an attacker-chosen name. The **fresh-context s
 opinion** found that my box-wide staging fallback was a ratchet that re-arms itself. I wrote
 "its worst case equals today's default." That was false. The permissive arm can mint new
 instances of its own trigger condition, forever. The **different-family pass at maximum
-effort** found two edge cases in the shipped fix. An app authorized to mount a volume owned by
-another app was never evaluated when the owner wasn't running. And the bulk remedy read from a
+effort** found two edge cases in the shipped fix. An app authorized to mount another app's volume
+was never evaluated when the owner wasn't running. And the bulk remedy read from a
 collapsed view that dropped the exact records that disqualify a tree. The **re-verify of the
 fixes** found a status report that lied: one arm reported a binding as carried while it
 carried nothing. The **mutation battery** found that two of the fixes had no test that fails
@@ -211,7 +211,7 @@ defects ship depends on which layer you happened to trust.
 What runs now, ordered by cost. Each layer is named for the failure class it exists to catch.
 I built each piece once: the panel orchestration, the scripted different-model invocation, and
 the mutation harness with its own honesty checks. The review script verifies the run header,
-so a silent model downgrade can't quietly turn the diverse gate into a same-family review.
+so a silent model downgrade can't turn the diverse gate into a same-family review.
 Each piece has paid for itself monthly since.
 
 1. **Mechanical enumeration before any review.** Grep out every constructor and call site of
