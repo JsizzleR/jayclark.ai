@@ -1,13 +1,13 @@
 ---
-title: Eleven Agents Agreed. The Design Was Still Wrong.
-description: A year of receipts on why reviewer count exaggerates assurance, and what actually catches the mistakes AI-generated work makes.
+title: Agreement Is Cheap
+description: Eleven AI reviewers endorsed the design's worst idea. A year of receipts on why reviewer count exaggerates assurance, and what actually catches the mistakes AI-generated work makes.
 date: 2026-08-12
 ---
 
-# Eleven Agents Agreed. The Design Was Still Wrong.
+# Agreement Is Cheap
 
-*The twelfth reviewer came from a different lab and killed the design in one pass. Two of its
-own four arguments were wrong too. A field report on correlated review, from a year-long
+*Eleven AI reviewers examined a design and endorsed its worst idea. The twelfth came from a
+different lab and killed it in one pass. Two of its own four arguments were wrong too. A field report on correlated review, from a year-long
 project where every review pass, verdict, and post-mortem was logged with receipts.*
 
 ---
