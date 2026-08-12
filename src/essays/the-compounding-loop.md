@@ -12,21 +12,6 @@ every week instead of starting from zero every morning. Distilled from a year-lo
 
 ---
 
-## Contents
-
-- [00 · The thesis](#00--the-thesis)
-- [01 · The five documents](#01--the-five-documents)
-- [02 · The session loop](#02--the-session-loop)
-- [03 · Receipts](#03--receipts)
-- [04 · Review layers are disjoint](#04--review-layers-are-disjoint)
-- [05 · Evidence rules](#05--evidence-rules)
-- [06 · Two tiers of decision](#06--two-tiers-of-decision)
-- [07 · The flywheel rule](#07--the-flywheel-rule)
-- [08 · The starter file](#08--the-starter-file)
-- [09 · Day one](#09--day-one)
-
----
-
 ## 00 · The thesis
 
 **You are not prompting an assistant. You are staffing a rotating crew of amnesiac senior
@@ -44,14 +29,14 @@ Three beliefs underneath everything else:
   line in a file the agent is forced to read, or better, a script that fails the commit.
   Prompting harder is not a mechanism.
 - **Recorded is not queued.** A problem noted in prose inside an old log entry is effectively
-  lost — nobody re-reads old entries. Known problems live in one structured ledger that gets read
+  lost. Nobody re-reads old entries. Known problems live in one structured ledger that gets read
   whole, every session.
 - **The process must be falsifiable.** "I reviewed it" is a claim. A grep-able receipt in the
   commit, checked by a pre-push script, is evidence. Everything below is built so that skipping a
   step is *visible*, not just discouraged.
 
-> Don't copy another project's earned rules — copy the machine that earns them. Rules you didn't
-> earn will get routed around; the machine will grow your own.
+> Don't copy another project's earned rules. Copy the machine that earns them. Rules you didn't
+> earn will get routed around. The machine will grow your own.
 
 ## 01 · The five documents
 
@@ -62,8 +47,8 @@ that lands in the wrong file is effectively deleted.
 | --- | --- | --- |
 | `CLAUDE.md` / `AGENTS.md` | **The standing authority.** The only file guaranteed to be read every session. Session protocol, invariants, and every durable rule the project has earned. If a rule binds future sessions, it lives here or it doesn't exist. | Loaded automatically, every session. |
 | `docs/status.md` | **Where the build is right now** and the single next step. New state is appended to the top; old chronology moves to an archive file so the doc stays within one read. | Read first, every session. |
-| `docs/decisions.md` | **Append-only log of every judgment call**, numbered (D-001, D-002…). Rationale included. Nothing in it is ever relitigated — a session that disagrees flags it to the human instead. | Grep by number or keyword. Never read whole; it grows unbounded. |
-| `docs/residuals.tsv` | **The known-unfixed ledger.** One row per deferred defect or open question, tab-separated, numbered (R-001…), with a state and a tier. This is the backlog; prose is not. | Short by design. Read whole, every session. |
+| `docs/decisions.md` | **Append-only log of every judgment call**, numbered (D-001, D-002…). Rationale included. Nothing in it is ever relitigated. A session that disagrees flags it to the human instead. | Grep by number or keyword. Never read whole; it grows unbounded. |
+| `docs/residuals.tsv` | **The known-unfixed ledger.** One row per deferred defect or open question, tab-separated, numbered (R-001…), with a state and a tier. This is the backlog. Prose is not. | Short by design. Read whole, every session. |
 | `scripts/check-*.sh` | **Executable definitions of done.** Every work item has a done-check script; "done" means the script exits green, not that the agent says so. A registry file lists them all with a tier (hermetic / integration) so none can be silently orphaned. | Run before every commit. |
 
 Two of these deserve emphasis because they're the ones people skip. The **decisions log** is what
@@ -94,12 +79,12 @@ Stop when its done-check is green.
 5. **Gate.** Run the check suite. Run the review the change class demands (§04). Commit at each
    green sub-step, small and described.
 6. **Close the books.** Update status.md, append the decision entry with its receipts (§03),
-   ledger any residual the work created — *in the same commit* — then stop. Don't start the next
-   item; the human decides the sequence.
+   ledger any residual the work created, *in the same commit*, then stop. Don't start the next
+   item. The human decides the sequence.
 
-> **Field note — the vacuous test.** A test that needed a child process to reach a state before a
+> **Field note: the vacuous test.** A test that needed a child process to reach a state before a
 > deadline was tuned with a snug timeout. The fork alone cost ~200ms on that machine, so the
-> deadline killed the child before the precondition existed — and the test *passed*, for a reason
+> deadline killed the child before the precondition existed. The test *passed*, for a reason
 > unrelated to the property. Nothing noticed until a mutation battery reported the guarded defect
 > as a survivor. The rule it earned: a test's precondition must be *observable* (have the fake
 > stamp a marker file and stat it), and any test that can pass vacuously eventually will.
@@ -108,7 +93,7 @@ Stop when its done-check is green.
 
 **Process claims you can grep for.** Every decision entry (and its commit body) carries one-line,
 machine-checkable receipts. A tiny pre-push script greps for them and refuses the push if one is
-missing. This sounds bureaucratic; in practice each is one line, and each exists because its
+missing. This sounds bureaucratic. In practice each is one line, and each exists because its
 absence caused a real loss.
 
 ```
@@ -125,7 +110,7 @@ JG: codex — ship-unfixed call UPHELD          # a judgment call shown to a 2nd
   standing authority?* The gate greps the named file for the verbatim phrase, so the receipt
   can't rot into an unchecked claim.
 - **JG (judgment-gate)** answers the subtlest one: *when you decided to ship a known defect,
-  decline a reviewer's remedy, or descope adjacent work — did anyone but the author ever see the
+  decline a reviewer's remedy, or descope adjacent work, did anyone but the author ever see the
   reasoning?* Give the second model the strongest case *against* your call, then verify its
   load-bearing claims yourself.
 
@@ -137,22 +122,22 @@ JG: codex — ship-unfixed call UPHELD          # a judgment call shown to a 2nd
 **Run more than one.** Measured repeatedly on real defects: each review layer catches things the
 others structurally cannot, so "we reviewed it" means naming *which layers*.
 
-- **A same-model multi-agent panel** buys breadth — many eyes on many files at once. It does not
-  buy diversity: eleven agents from one model family share one blind spot, and they have
-  unanimously endorsed a mechanism that was simply wrong.
-- **A different-model pass** (Claude reviews Codex's work; Codex reviews Claude's) buys *frame*
+- **A same-model multi-agent panel** buys breadth: many eyes on many files at once. It does not
+  buy diversity. Eleven agents from one model family share one blind spot, and they once
+  unanimously endorsed a mechanism that was wrong.
+- **A different-model pass** (Claude reviews Codex's work, or Codex reviews Claude's) buys *frame*
   diversity. This is the mandatory gate for anything touching security boundaries, concurrency,
   or data mutation/deletion. Practicalities that matter: inline the code under review directly in
-  the prompt (a reviewer allowed to explore burns its whole budget reading), state external facts
-  as givens, ask 4–6 numbered questions, and keep it foreground where you can watch it.
+  the prompt, state external facts as givens, ask 4–6 numbered questions, and keep it foreground
+  where you can watch it. A reviewer allowed to explore burns its whole budget reading.
 - **A re-verify of the fixes** is its own layer. Fixes-to-review-findings are repeatedly
   themselves insufficient, and only a second pass over the fix catches it.
 - **Mutation testing** reviews the *tests*: patch a deliberate bug in, and if the suite stays
   green, the test was theater. It is the only layer that finds vacuous tests, because a vacuous
   test is invisible to its author, to reviewers, and to itself.
 
-> **Field note — the bypassed guard.** A security guard was added at one call site and carefully
-> reviewed — two different-model passes plus a re-verify, all green. The defect: a *second* call
+> **Field note: the bypassed guard.** A security guard was added at one call site and carefully
+> reviewed: two different-model passes plus a re-verify, all green. The defect: a *second* call
 > site built the same path inline and never called the guard. Every reviewer was scoped to the
 > diff, and the diff didn't contain the bypass. The rule it earned: a guard's review scope is
 > every site that *bypasses* it, never the diff. Before review, grep for every constructor of the
@@ -162,27 +147,27 @@ others structurally cannot, so "we reviewed it" means naming *which layers*.
 
 **What counts as knowing.**
 
-- **Measure the interface.** Before integrating anything you don't control — a CLI, an API, a
-  wire format — verify the actual contract by running it. A design doc's description of an
-  external interface is a hypothesis; a test written against the assumption stays green while
+- **Measure the interface.** Before integrating anything you don't control (a CLI, an API, a
+  wire format), verify the actual contract by running it. A design doc's description of an
+  external interface is a hypothesis. A test written against the assumption stays green while
   reality differs. (One integration was planned on five assumed facts about a third-party tool.
   All five were wrong. A thirty-minute clone-and-read caught it.)
 - **A search that matches nothing looks exactly like "nothing left to do."** Broken regex flavor,
-  un-split shell variable, byte-oriented tool on UTF-8 — each returns empty, and empty reads as
+  un-split shell variable, byte-oriented tool on UTF-8: each returns empty, and empty reads as
   success. The defense is never remembering the traps: **count occurrences before and after** and
   require the counts to reconcile.
 - **Verify a gate fires on a defect you didn't design it around.** Your test of your own check
   will be tuned to your own pattern. Write the probe as the mistake an *unaware* author would
   make. Prefer counting an inventory ("exactly N call sites, named") over grepping for a shape.
-- **Prefer fail-closed instruments.** A count inflated by noise goes red and gets looked at; a
+- **Prefer fail-closed instruments.** A count inflated by noise goes red and gets looked at. A
   count silently deflated by a parsing quirk hides a real defect forever. When two failure modes
   conflict, pick the one that complains.
 - **Test the configuration you ship**, not the one that's convenient in the harness. And when a
-  claim matters, demand verbatim quotes and commands from any agent reporting it — a summarizing
+  claim matters, demand verbatim quotes and commands from any agent reporting it. A summarizing
   agent is a fabricating agent.
 
-> **Field note — the silent sensor.** A nightly full-suite run on a second machine went red four
-> nights in a row. Nobody saw, because the reporting channel had quietly broken — and a silent
+> **Field note: the silent sensor.** A nightly full-suite run on a second machine went red four
+> nights in a row. Nobody saw, because the reporting channel had quietly broken, and a silent
 > sensor hides an unbounded number of reds. Now a hook prints the nightly verdict at the top of
 > every session, and *"no report" is treated as worse than "red."* The rule it earned: sensors
 > get sensors. Any automated check whose failure is silent isn't a check.
@@ -191,9 +176,9 @@ others structurally cannot, so "we reviewed it" means naming *which layers*.
 
 **And the agent knows which is which.** Every open question carries a tier. **Session-tier**
 questions are within a working session's authority: the agent decides, logs the decision, moves
-on. **Owner-tier** questions — anything touching product direction, security posture, spending,
-external commitments, or accepting a known defect as permanent — are *queued for the human*,
-never decided, no matter how obvious the answer looks.
+on. **Owner-tier** questions are *queued for the human*, never decided, no matter how obvious
+the answer looks: anything touching product direction, security posture, spending, external
+commitments, or accepting a known defect as permanent.
 
 The phrase that does the work, verbatim in the standing authority: *ambiguity is never
 self-authorization*. An agent that hits an ambiguous owner-tier question stays inside settled
@@ -201,28 +186,28 @@ scope, writes a ledger row tagged `tier=owner`, and continues with what is unamb
 answer owner rows in batches, and the answers become decision-log entries the next hundred
 sessions inherit.
 
-This tiering is what makes it safe to let sessions run long and autonomous: the blast radius of
+This tiering is what makes it safe to let sessions run long and autonomous. The blast radius of
 agent judgment is bounded by construction, not by hoping the model is appropriately humble that
 day.
 
 ## 07 · The flywheel rule
 
 **Every failure becomes structure, in the same commit.** This is the rule that makes the system
-compound rather than merely operate. When something goes wrong — a bug escapes, a review misses,
-a shell one-liner silently does nothing — the response has three mandatory parts, and they land
+compound rather than merely operate. When something goes wrong (a bug escapes, a review misses,
+a shell one-liner silently does nothing), the response has three mandatory parts, and they land
 in the *same commit*:
 
 1. **Fix the defect**, with a reproduced red first.
-2. **Add a gate that would have caught it** — a test, a check script clause, a receipt — and
-   verify the gate actually fires, on a breakage you didn't design it around.
+2. **Add a gate that would have caught it**: a test, a check script clause, a receipt. Verify
+   the gate actually fires, on a breakage you didn't design it around.
 3. **Promote the lesson to the standing authority.** Ask: *would this force a future session to
    re-derive what I know right now?* If yes, it becomes a line in CLAUDE.md (with the DURABLE
-   receipt); if it's a fact, it becomes a memory note; if it's an open question, a ledger row.
+   receipt). If it's a fact, it becomes a memory note. If it's an open question, a ledger row.
    Prose in a log entry is where lessons go to die.
 
-"Same commit" is load-bearing. Deferred documentation doesn't happen; a lesson written down next
+"Same commit" is load-bearing. Deferred documentation doesn't happen. A lesson written down next
 week is a lesson lost. The result, after a few months, is a CLAUDE.md where nearly every line is
-a scar with a number attached — and new sessions that simply do not make last quarter's mistakes.
+a scar with a number attached, and new sessions that do not make last quarter's mistakes.
 
 ## 08 · The starter file
 
@@ -319,20 +304,20 @@ Test: "would this force a future session to re-derive what I know now?"
    kickoff prompt, and insist on the full close-out (status + decision + receipts) even though it
    feels like ceremony at n=1. The habit is the product.
 4. **Feed the flywheel from the first failure.** Something will go wrong in week one. That's the
-   system's first meal: fix, gate, promote — same commit. Six months of this is the difference
+   system's first meal: fix, gate, promote. Same commit. Six months of this is the difference
    between a prompt and a practice.
 5. **Batch your owner rulings.** Once ledger rows tagged `tier=owner` accumulate, sit down
-   periodically and rule on them in batches. Your answers become decision entries — which is how
+   periodically and rule on them in batches. Your answers become decision entries, which is how
    *your* judgment, not just the model's, ends up encoded in the repo.
 
 Two warnings from experience. First: the documents are load-bearing only if the read discipline
-holds — status stays short, decisions stay grep-only, residuals stay a ledger and never a diary.
+holds: status stays short, decisions stay grep-only, residuals stay a ledger and never a diary.
 Second: resist importing another project's scar tissue wholesale. A forty-rule CLAUDE.md on day
-one is noise the agent learns to skim; a rule earned from your own failure, landed the same day
+one is noise the agent learns to skim. A rule earned from your own failure, landed the same day
 with its gate, is one the system actually keeps.
 
 ---
 
 *Distilled 2026 from a live single-operator project: ~400 logged decisions, a residual ledger,
 nightly full-suite runs on a second machine, and a pre-push hook that greps for receipts. Shared
-freely; adapt freely.*
+freely. Adapt freely.*
