@@ -1,6 +1,6 @@
 ---
 title: The Missing Lockfile
-description: An AI agent's tools are dependencies, and nothing pins them. Tool descriptions are prompt text. I measured the tool surfaces of 44 MCP servers to find out whether a lockfile could work. Then one of my own servers failed the conformance harness I built alongside it.
+description: An MCP server can change what your agent is told to do, and nothing you run would notice. What 44 servers showed, and what happened when I graded my own.
 date: 2026-08-18
 ---
 
