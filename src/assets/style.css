@@ -339,3 +339,18 @@ h1.rule-head { max-width: 39rem; margin: 0 auto 1.1rem; }
   .prose table { font-size: .78rem; }
   .sheet-index li { padding: .7rem .75rem; }
 }
+
+/* ---- footer ---- */
+.colophon {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 3rem;
+  padding-top: 1.1rem;
+  border-top: 1px solid var(--border);
+  font-family: var(--display);
+  font-size: .85rem;
+  color: var(--muted);
+}
+.colophon a { color: var(--muted); }
+.colophon a:hover { color: var(--fg); text-decoration: none; }

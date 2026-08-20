@@ -18,3 +18,5 @@ Nothing survives production on good intentions, and no rule survives on being re
 The rules that matter get written into a file or enforced by a script.
 
 U.S. Air Force veteran. Python and Go. New York.
+
+Find my code on [GitHub](https://github.com/JsizzleR).
